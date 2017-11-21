@@ -19,7 +19,7 @@ static void usage(char *name)
 {
 	cout << name << " usage:\n" <<
           "\t-b type_of_branch_predictor: 1-bit predictor(1) or 2-bit predictor(2)\n" <<
-          "\t-e the_number_of_bht_entries: the number of branch history table entries\n" <<
+          "\t-e the_number_of_btb_entries: the number of branch target buffer entries\n" <<
 	        "\t-t text_stream_file: load .text with the contents of file\n" <<
 	        "\t-d data_stream_file: [optional] load .data with contents of file\n" <<
 	        "\t-v: very verbose single-click CPU (echo every stage, pause after each cycle)\n";
@@ -40,7 +40,7 @@ int32_t main(int32_t argc, char **argv)
 	uint32_t data_ptr = data_segment;
 
   int type_branch_predictor = 0;
-  int num_bht_entries = 0;
+  int num_btb_entries = 0;
 
 	while ((ch = getopt(argc, argv, "t:d:b:e:vmc")) != -1) {
 		switch (ch) {
@@ -55,11 +55,11 @@ int32_t main(int32_t argc, char **argv)
       break;
     case 'e': 
       {
-        int valid_bht_entries[] = {8, 16, 32, 64, 128, 256, 512, 1024};
+        int valid_btb_entries[] = {8, 16, 32, 64, 128, 256, 512, 1024};
         int invalid = 1;
-        sscanf(optarg, "%d", &num_bht_entries);
-        for(int i=0; i<sizeof(valid_bht_entries); i++) {
-          if(valid_bht_entries[i] == num_bht_entries) {
+        sscanf(optarg, "%d", &num_btb_entries);
+        for(int i=0; i<sizeof(valid_btb_entries); i++) {
+          if(valid_btb_entries[i] == num_btb_entries) {
             invalid = 0;
           }
         }
@@ -126,10 +126,10 @@ int32_t main(int32_t argc, char **argv)
 	}
 
   cout <<"Type of branch predictor: " << type_branch_predictor << "-bit predictor\n";
-  cout << "The number of BHT entries: " << num_bht_entries << " entries\n";
+  cout << "The number of BTB entries: " << num_btb_entries << " entries\n";
 
 	cout << *argv << ": Starting CPU..." << endl;
-	run_cpu(&mem, verb, type_branch_predictor, num_bht_entries);
+	run_cpu(&mem, verb, type_branch_predictor, num_btb_entries);
 	cout << *argv << ": CPU Finished" << endl;
 
 	if (mem.is_collecting()) mem.display_memory_stats();

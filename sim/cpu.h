@@ -21,9 +21,9 @@ public:
 	WriteBackStage wbs;
 
   int type_branch_predictor;
-  int num_bht_entries;
+  int num_btb_entries;
 };
 
-void run_cpu(memory *m, const bool verbose, int type_branch_predictor, int num_bht_entries);
+void run_cpu(memory *m, const bool verbose, int type_branch_predictor, int num_btb_entries);
 
 #endif /* _CPU_H_ */

@@ -27,7 +27,7 @@ void InstructionFetchStage::Execute()
 {
   // Input of the program
   int type_branch_predictor = core->type_branch_predictor; // Type of branch predictor (1: 1-bit, 2: 2-bit)
-  int num_bht_entries = core->num_bht_entries; // The number of BHT entries
+  int num_btb_entries = core->num_btb_entries; // The number of BTB entries
   //---------------------
   
 	right.opcode = core->mem->get<byte>(core->PC);
@@ -49,7 +49,7 @@ void InstructionDecodeStage::Execute()
 {
   // Input of the program
   int type_branch_predictor = core->type_branch_predictor; // Type of branch predictor (1: 1-bit, 2: 2-bit)
-  int num_bht_entries = core->num_bht_entries; // The number of BHT entries
+  int num_btb_entries = core->num_btb_entries; // The number of BTB entries
   //---------------------
   
 	core->registers[0] = 0; // wire register 0 to zero for all register reads
@@ -103,7 +103,7 @@ void ExecuteStage::Execute()
 
   // Input of the program
   int type_branch_predictor = core->type_branch_predictor; // Type of branch predictor (1: 1-bit, 2: 2-bit)
-  int num_bht_entries = core->num_bht_entries; // The number of BHT entries
+  int num_btb_entries = core->num_btb_entries; // The number of BTB entries
   //---------------------
   
   // ----------------------------------------------------------------------

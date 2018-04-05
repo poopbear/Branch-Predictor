@@ -2,6 +2,12 @@
 #define _LATCH_H_
 #include "instruction.h"
 
+typedef struct table_element_type {
+	uint32_t branch_inst_addr;
+	uint32_t branch_target_addr;
+	int prediction_bit;
+} table_t;
+
 class latch {
 public:
 	byte opcode;
@@ -17,6 +23,8 @@ public:
 	uint32_t immediate;
 	uint32_t PC;
 	bool predict_taken;
+	bool btb_found; // is this instruction found in BTB?
+	int btb_index; // index value of PC	
 };
 
 class DEl : public latch {
@@ -26,6 +34,8 @@ public:
 	int32_t  Rsrc1Val, Rsrc2Val;
 	uint32_t PC;
 	bool predict_taken;
+	bool btb_found;
+	int btb_index;
 };
 
 class EMl : public latch {

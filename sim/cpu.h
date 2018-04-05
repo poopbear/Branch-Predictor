@@ -22,6 +22,8 @@ public:
 
   int type_branch_predictor;
   int num_btb_entries;
+	int branch_count;
+	int miss_count;
 };
 
 void run_cpu(memory *m, const bool verbose, int type_branch_predictor, int num_btb_entries);

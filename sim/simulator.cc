@@ -128,7 +128,7 @@ int32_t main(int32_t argc, char **argv)
   cout <<"Type of branch predictor: " << type_branch_predictor << "-bit predictor\n";
   cout << "The number of BTB entries: " << num_btb_entries << " entries\n";
 
-	cout << *argv << ": Starting CPU..." << endl;
+	cout << *argv << ": Starting CPU...";
 	run_cpu(&mem, verb, type_branch_predictor, num_btb_entries);
 	cout << *argv << ": CPU Finished" << endl;
 

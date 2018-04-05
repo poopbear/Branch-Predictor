@@ -84,6 +84,8 @@ void run_cpu(memory *mem, const bool verbose_cpu, int type_branch_predictor, int
 
   core.type_branch_predictor = type_branch_predictor;
   core.num_btb_entries = num_btb_entries;
+	core.branch_count = 0;
+	core.miss_count = 0;
 
 	// initialize registers
 	for (int32_t x = 0; x < 32; x++) core.registers[x] = 0;
@@ -131,4 +133,5 @@ void run_cpu(memory *mem, const bool verbose_cpu, int type_branch_predictor, int
 	} catch (const char *e) {
 		printf("CPU fault: %s\n", e);
 	}
+	printf("Miss rate: %.2lf%%\n", (double) core.miss_count / core.branch_count * 100);
 }
